@@ -1,2 +1,4 @@
-%th.change-user-header
-  =l(:become_user_header)
+- if User.current.admin?
+
+  %th.change-user-header
+    =l(:become_user_header)
