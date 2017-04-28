@@ -9,3 +9,19 @@
 .change-user-header {
   text-align: left !important;
 }
+
+.turn-back-panel {
+  height: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  background-color: #2e8965;
+  color: white;
+  text-align: center;
+  a {
+    color: white !important;
+    text-decoration: underline !important;
+  }
+}
