@@ -1,5 +1,5 @@
 - if session['turn_back_to']
 
-  %div.turn-back-panel
+  #turn-back-panel
     %a{href: vhod_turn_back_path(session['turn_back_to']) }
       #{l(:turn_back_to_admin)} #{session[:initial_user_name]}
