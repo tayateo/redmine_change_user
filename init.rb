@@ -1,5 +1,7 @@
 plugin_name = :vhod_change_user
 
+require_dependency 'vhod_change_user/hooks'
+
 Redmine::Plugin.register plugin_name do
   name 'Vhod Change User'
   description 'Temporarily changes user in session'

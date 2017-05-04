@@ -1,5 +1,4 @@
 - if session['turn_back_to']
-
   #turn-back-panel
     = link_to "#{l(:turn_back_to_admin)} #{session[:initial_user_name]}",
       user_mutation_path(session[:turn_back_to]), method: :delete
