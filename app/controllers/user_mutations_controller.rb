@@ -1,6 +1,6 @@
 class UserMutationsController < ApplicationController
 
-  before_filter :require_admin, :except => :destroy
+  before_action :check_policy
 
   def update
     change_user = User.find(params['id'])
@@ -21,5 +21,9 @@ class UserMutationsController < ApplicationController
   def change_user_in_session(user)
     session[:user_id] = user.id
     session[:tk] = user.generate_session_token
+  end
+
+  def check_policy
+    render_403 unless UserMutationsPolicy.allow?(params[:action])
   end
 end
