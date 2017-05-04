@@ -4,7 +4,6 @@ Deface::Override.new virtual_path: 'users/index',
                      insert_before: 'td.username',
                      partial: 'users/change_user'
 
-
 Deface::Override.new virtual_path: 'users/index',
                      name: 'add-change-user-thead',
                      original: '2ba927adba7920d26097724835b57fe6e21d8098',

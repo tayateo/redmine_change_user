@@ -1,6 +1,5 @@
 - if User.current.admin?
 
   %td.change-user
-    %a{href: vhod_change_user_path(user.id)}
-      =l(:turn_into_user)
-      =user.login
+    = link_to "#{l(:turn_into_user)} #{user.login}",
+      user_mutation_path(user.id)
