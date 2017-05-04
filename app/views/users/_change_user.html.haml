@@ -1,5 +1,3 @@
-- if User.current.admin?
-
-  %td.change-user
-    = link_to "#{l(:turn_into_user)} #{user.login}",
-      user_mutation_path(user.id)
+%td.change-user
+  = link_to "#{l(:turn_into_user)} #{user.login}",
+    user_mutation_path(user.id), method: :put
