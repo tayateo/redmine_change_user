@@ -1,6 +1,6 @@
 class UserMutationsController < ApplicationController
 
-  before_action :check_policy, :except => :destroy
+  before_action :check_policy, except: :destroy
 
   def update
     change_user = User.find(params['id'])

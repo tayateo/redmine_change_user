@@ -1,3 +1,4 @@
-%td.change-user
-  = link_to "#{l(:turn_into_user)} #{user.login}",
-    user_mutation_path(user.id), method: :put
+- if UserMutationsPolicy.allow?(:update)
+  %td.change-user
+    = link_to "#{l(:turn_into_user)} #{user.login}",
+      user_mutation_path(user.id), method: :put

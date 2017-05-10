@@ -1,2 +1,3 @@
-%th
-  =l(:become_user_header)
+- if UserMutationsPolicy.allow?(:update)
+  %th
+    =l(:become_user_header)
