@@ -1,5 +1,4 @@
 class UserMutationsController < ApplicationController
-
   before_action :check_policy, except: :destroy
 
   def update
@@ -17,6 +16,8 @@ class UserMutationsController < ApplicationController
     session[:initial_user_name] = nil
     redirect_back_or_default users_path
   end
+
+  private
 
   def change_user_in_session(user)
     session[:user_id] = user.id
