@@ -23,6 +23,7 @@ describe 'Мутация', js: true do
         click_link "Стать #{user.login}"
         expect(page).to have_selector('#loggedas', text: "Вошли как #{user.login}")
       end
+
       it 'вызывает появление кнопки снова стать админом' do
         visit users_path
         click_link "Стать #{user.login}"
