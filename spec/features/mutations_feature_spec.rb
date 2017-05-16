@@ -1,9 +1,7 @@
 require File.expand_path('../../rails_helper', __FILE__)
 
 describe 'При мутации', js: true do
-  let(:department) { create(:department) }
-  let!(:user) { create(:user, department: department) }
-  let(:init_user) { create(:admin, login: 'admin', department: department) }
+  include_context :user_and_admin
   before :each do
     login_user(init_user.login, 'foo')
     visit users_path

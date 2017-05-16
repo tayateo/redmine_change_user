@@ -1,4 +1,5 @@
 require File.expand_path('../../../vhod_common/spec/rails_helper', __FILE__)
+require File.expand_path('../shared_contexts', __FILE__)
 include VhodCommonSpec
 
 FactoryGirl.definition_file_paths |= [
