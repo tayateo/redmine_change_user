@@ -1,0 +1,4 @@
+- if UserMutationsPolicy.allow?(:update) && User.current != @user
+  %p.strong
+    = link_to "#{l(:turn_into_user)} #{@user.login}",
+      user_mutation_path(@user.id), method: :put

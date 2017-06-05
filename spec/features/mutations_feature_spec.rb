@@ -4,35 +4,51 @@ describe 'При мутации', js: true do
   include_context :user_and_admin
   before :each do
     login_user(init_user.login, 'foo')
-    visit users_path
   end
 
   context 'если пользователь админ' do
-    describe 'то отображается ссылка переключения пользователя' do
-      it 'после нажатия на которую появляется идентификатор другого пользователя и кнопка обратного переключения' do
-        click_link "Стать #{user.login}"
-        expect(page).to have_css('#turn-back-panel > a', text: "Снова стать #{init_user.login}")
-        expect(page).to have_css('#loggedas', text: "Вошли как #{user.login}")
-      end
+    it 'есть ссылка переключения пользователя в списке пользователей' do
+      visit users_path
+      click_link "Стать #{user.login}"
+      expect(page).to have_css('#turn-back-panel > a', text: "Снова стать #{init_user.login}")
+      expect(page).to have_css('#loggedas', text: "Вошли как #{user.login}")
+      click_link("Снова стать #{init_user.login}")
+      expect(page).to have_link("Стать #{user.login}")
     end
 
-    describe 'ссылка обратного переключения на админа' do
-      it 'не сохраняется после завершения сеанса' do
-        click_link "Стать #{user.login}"
-        click_link "Выйти"
-        login_user(user.login, 'foo')
-        expect(page).to have_no_link("Снова стать #{init_user.login}")
-      end
+    it 'есть ссылка переключения на пользователя на странице пользователя' do
+      visit user_path(user.id)
+      expect(page).to have_link("Стать #{user.login}")
+      click_link("Стать #{user.login}")
+      expect(page).to have_css('#turn-back-panel > a', text: "Снова стать #{init_user.login}")
+      expect(page).to have_css('#loggedas', text: "Вошли как #{user.login}")
+    end
+
+    it 'нет ссылки переключения на смого себя на своей странице' do
+      visit user_path(admin.id)
+      expect(page).to have_no_link("Стать #{admin.login}")
+    end
+
+    it 'ссылка обратного переключения на админа не сохраняется после завершения сеанса' do
+      visit users_path
+      click_link "Стать #{user.login}"
+      click_link "Выйти"
+      login_user(user.login, 'foo')
+      expect(page).to have_no_link("Снова стать #{init_user.login}")
     end
   end
 
   context 'если пользователь не админ' do
     let(:init_user) { user }
 
-    describe 'ссылка переключения пользователя' do
-      it 'не существует' do
-        expect(page).to have_no_css('.change-user')
-      end
+    it 'нет ссылки переключения пользователя в списке пользователей' do
+      visit users_path
+      expect(page).to have_no_css('.change-user')
+    end
+
+    it 'нет ссылки переключения пользователя на странице пользователя' do
+      visit user_path(another_user.id)
+      expect(page).to have_no_link("Стать #{another_user.login}")
     end
   end
 end
