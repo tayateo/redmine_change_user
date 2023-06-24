@@ -1,4 +1,4 @@
-Vhod Change User
+Redmine Change User
 ===================
 
 Temporarily changes user in session.
